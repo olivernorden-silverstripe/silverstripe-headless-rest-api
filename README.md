@@ -12,7 +12,7 @@ Add the following section to your composer.json
     "repositories": [
         {
             "type": "vcs",
-            "url": "https://github.com/olivernorden-silverstripe/headless-rest/"
+            "url": "https://github.com/olivernorden-silverstripe/silverstripe-headless-rest-api"
         }
     ],
 
