@@ -74,6 +74,10 @@ OliverNorden\HeadlessRest\HeadlessRestController:
     headlessSiteTreeFields:
       AbsoluteURL: getAbsoluteURL
 ```
+## Using with Nuxt or Next JS
+Tutorial: [Headless Silverstripe with Next.JS](https://olivernorden.se/blog/headless-silverstripe-with-next-js)
+
+Tutorial: [Headless Silverstripe with Nuxt.JS](https://olivernorden.se/blog/headless-silverstripe-with-nuxt)
 
 ## Maintainers
  * Oliver Nordén <oliver@tapirens.se>
