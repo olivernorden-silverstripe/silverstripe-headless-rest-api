@@ -1,0 +1,6 @@
+---
+Name: headless-sitetree-fields
+---
+OliverNorden\HeadlessRest\HeadlessRestController:
+    headlessSiteTreeFields:
+      Link: Link

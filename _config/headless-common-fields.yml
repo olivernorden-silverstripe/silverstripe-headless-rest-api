@@ -1,0 +1,24 @@
+---
+Name: headless-rest-common-fields
+---
+
+OliverNorden\HeadlessRest\HeadlessRestController:
+    headlessCommonFields:
+        Navigation:
+            fields:
+                ID: ID
+                MenuTitle: getMenuTitle
+                Link: Link
+        SiteConfig:
+            fields:
+                Title: Title
+
+        SilverStripe\CMS\Model\SiteTree:
+            label: Navigation
+            filter:
+                ShowInMenus: 1
+            fields:
+                MenuTitle: MenuTitle
+                Title: Title
+                Link: Link
+                ID: ID

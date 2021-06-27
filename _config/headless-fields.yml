@@ -1,0 +1,14 @@
+---
+Name: headless-rest-fields
+---
+SilverStripe\ORM\DataObject:
+  headlessFields:
+    ID: ID
+SilverStripe\Assets\Image:
+  headlessFields:
+    Link: Link
+    Name: Name
+    Title: Title
+SilverStripe\CMS\Model\SiteTree:
+  headlessFields:
+    Title: Title

@@ -1,0 +1,6 @@
+SilverStripe\Core\Injector\Injector:
+  Psr\SimpleCache\CacheInterface.headless-rest:
+    factory: SilverStripe\Core\Cache\CacheFactory
+    constructor:
+      defaultLifetime: 0
+      namespace: "headless-rest"

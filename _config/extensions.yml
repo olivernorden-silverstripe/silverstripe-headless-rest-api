@@ -1,0 +1,6 @@
+---
+Name: headless-rest-extensions
+---
+SilverStripe\ORM\DataObject:
+  extensions:
+    - 'OliverNorden\HeadlessRest\DataObjectExtension'

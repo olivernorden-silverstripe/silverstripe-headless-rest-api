@@ -1,0 +1,6 @@
+---
+Name: headless-rest-routes
+---
+SilverStripe\Control\Director:
+  rules:
+    'headless-api/v1': 'OliverNorden\HeadlessRest\HeadlessRestController'
