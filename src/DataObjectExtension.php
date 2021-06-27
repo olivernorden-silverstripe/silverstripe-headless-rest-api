@@ -4,6 +4,7 @@ namespace OliverNorden\HeadlessRest;
 
 use SilverStripe\ORM\DataList;
 use SilverStripe\Core\Extension;
+use SilverStripe\Core\Flushable;
 use SilverStripe\ORM\DataObject;
 use SilverStripe\ORM\HasManyList;
 use SilverStripe\ORM\ManyManyList;
@@ -15,7 +16,7 @@ use SilverStripe\ORM\FieldType\DBHTMLText;
 use SilverStripe\ORM\FieldType\DBHTMLVarchar;
 use SilverStripe\View\Parsers\ShortcodeParser;
 
-class DataObjectExtension extends Extension {
+class DataObjectExtension extends Extension implements Flushable {
 
     public function getCacheKey() {
         if ($this->owner instanceof SiteTree) {
@@ -103,5 +104,9 @@ class DataObjectExtension extends Extension {
 
     public function onAfterUnpublish() {
         $this->owner->clearCache();
+    }
+
+    public static function flush() {
+        Injector::inst()->get(CacheInterface::class . HeadlessRestController::CACHE_NAMESPACE)->clear();
     }
 }
