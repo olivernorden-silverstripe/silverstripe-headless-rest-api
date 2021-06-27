@@ -1,6 +1,10 @@
 # Silverstripe CMS Headless rest api
 
 This module adds a customizable rest api to Silverstripe for usage with front end frameworks such as Nuxt or Next JS. It adds three end points for fetching navigation and other common fields, site tree and url specific fields.
+## Using with Nuxt or Next JS
+Tutorial: [Headless Silverstripe with Next.JS](https://olivernorden.se/blog/headless-silverstripe-with-next-js)
+
+Tutorial: [Headless Silverstripe with Nuxt.JS](https://olivernorden.se/blog/headless-silverstripe-with-nuxt)
 
 ## Requirements
 
@@ -74,10 +78,6 @@ OliverNorden\HeadlessRest\HeadlessRestController:
     headlessSiteTreeFields:
       AbsoluteURL: getAbsoluteURL
 ```
-## Using with Nuxt or Next JS
-Tutorial: [Headless Silverstripe with Next.JS](https://olivernorden.se/blog/headless-silverstripe-with-next-js)
-
-Tutorial: [Headless Silverstripe with Nuxt.JS](https://olivernorden.se/blog/headless-silverstripe-with-nuxt)
 
 ## Maintainers
  * Oliver Nordén <oliver@tapirens.se>
