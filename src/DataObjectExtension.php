@@ -52,7 +52,20 @@ class DataObjectExtension extends Extension implements Flushable {
         return true;
     }
 
-    public function getHeadlessRestFields($fields = null) {
+    public function getModelRestReference() {
+        return [
+            'ClassName' => $this->owner->ClassName,
+            'ID' => $this->owner->ID,
+        ];
+    }
+
+    public function getHeadlessRestFields($fields = null, $previosModels = []) {
+        // Prevent circular references
+        $modelRef = $this->getModelRestReference();
+        if (in_array($modelRef, $previosModels)) return $modelRef;
+
+        $previosModels[] = $modelRef;
+
         // Add fields from config if none are passed as argument
         $fields = $fields ? $fields : $this->owner->config()->headlessFields;
 
@@ -80,13 +93,13 @@ class DataObjectExtension extends Extension implements Flushable {
                 ) {
                     $fields[$label] = [];
                     foreach ($objectListOrMethod as $object) {
-                        array_push($fields[$label], $object->getHeadlessRestFields());
+                        array_push($fields[$label], $object->getHeadlessRestFields(null, $previosModels));
                     }
                 }
                 // Methods or has one
                 else {
                     $fields[$label] = $objectListOrMethod instanceof DataObject ? 
-                        $objectListOrMethod->getHeadlessRestFields():
+                        $objectListOrMethod->getHeadlessRestFields(null, $previosModels):
                         $objectListOrMethod;
                 }
             }
