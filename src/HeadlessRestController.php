@@ -39,6 +39,7 @@ class HeadlessRestController extends Controller {
                 }
 
                 $cacheKey = $page->getCacheKey();
+                $this->extend('updatePageCacheKey', $cacheKey);
                 // Return cached page if exists
                 if ($cacheKey && $cache->has($cacheKey) && Versioned::get_stage() === Versioned::LIVE) {
                     return $this->returnJson($cache->get($cacheKey));
@@ -53,6 +54,7 @@ class HeadlessRestController extends Controller {
             
             case 'common':
                 $cacheKey = 'common';
+                $this->extend('updateCommonCacheKey', $cacheKey);
                 // Return cached fields if cache exists
                 if ($cache->has($cacheKey) && Versioned::get_stage() === Versioned::LIVE) {
                     return $this->returnJson($cache->get($cacheKey));
@@ -79,6 +81,7 @@ class HeadlessRestController extends Controller {
                 break;
             case 'sitetree':
                 $cacheKey = 'sitetree';
+                $this->extend('updateSiteTreeCacheKey', $cacheKey);
                 // Return cached fields if cache exists
                 if ($cache->has($cacheKey) && Versioned::get_stage() === Versioned::LIVE) {
                     return $this->returnJson($cache->get($cacheKey));
