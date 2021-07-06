@@ -32,6 +32,7 @@ class HeadlessRestController extends Controller {
         switch ($action) {
             case 'url':
                 $url = $request->remaining();
+                $this->extend('updateUrl', $url);
                 $page = SiteTree::get_by_link($url);
 
                 if (!$page) {
