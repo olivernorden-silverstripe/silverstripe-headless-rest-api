@@ -35,6 +35,7 @@ class HeadlessRestController extends Controller {
                 $this->extend('updateUrl', $url);
                 $page = SiteTree::get_by_link($url);
 
+                $this->extend('updatePage', $page);
                 if (!$page) {
                     return $this->notFound('Page not found ' . $url);
                 }
