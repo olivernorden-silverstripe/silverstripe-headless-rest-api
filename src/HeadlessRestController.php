@@ -70,6 +70,7 @@ class HeadlessRestController extends Controller {
                     'ShowInMenus' => 1,
                     'ParentID' => 0,
                 ]);
+                $this->extend('updateNavigationPages', $navigationPages);
                 $navFields = $commonFields['Navigation']['fields'];
                 $fields['Navigation'] = $this->getNavigationFields($navigationPages, $navFields);
 
