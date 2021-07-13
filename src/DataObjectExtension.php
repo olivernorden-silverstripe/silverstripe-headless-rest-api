@@ -47,6 +47,8 @@ class DataObjectExtension extends Extension implements Flushable {
         $cache->delete('common');
         $cache->delete('sitetree');
 
+        $this->owner->extend('onAfterCacheClear');
+
         // Reset versioned stage
         Versioned::set_stage($beforeStage);
         return true;
