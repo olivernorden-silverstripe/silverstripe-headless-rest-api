@@ -32,13 +32,16 @@ class HeadlessRestController extends Controller {
         switch ($action) {
             case 'url':
                 $url = $request->remaining();
+                $this->extend('updateUrl', $url);
                 $page = SiteTree::get_by_link($url);
 
+                $this->extend('updatePage', $page);
                 if (!$page) {
                     return $this->notFound('Page not found ' . $url);
                 }
 
                 $cacheKey = $page->getCacheKey();
+                $this->extend('updatePageCacheKey', $cacheKey);
                 // Return cached page if exists
                 if ($cacheKey && $cache->has($cacheKey) && Versioned::get_stage() === Versioned::LIVE) {
                     return $this->returnJson($cache->get($cacheKey));
@@ -53,6 +56,7 @@ class HeadlessRestController extends Controller {
             
             case 'common':
                 $cacheKey = 'common';
+                $this->extend('updateCommonCacheKey', $cacheKey);
                 // Return cached fields if cache exists
                 if ($cache->has($cacheKey) && Versioned::get_stage() === Versioned::LIVE) {
                     return $this->returnJson($cache->get($cacheKey));
@@ -66,6 +70,7 @@ class HeadlessRestController extends Controller {
                     'ShowInMenus' => 1,
                     'ParentID' => 0,
                 ]);
+                $this->extend('updateNavigationPages', $navigationPages);
                 $navFields = $commonFields['Navigation']['fields'];
                 $fields['Navigation'] = $this->getNavigationFields($navigationPages, $navFields);
 
@@ -79,6 +84,7 @@ class HeadlessRestController extends Controller {
                 break;
             case 'sitetree':
                 $cacheKey = 'sitetree';
+                $this->extend('updateSiteTreeCacheKey', $cacheKey);
                 // Return cached fields if cache exists
                 if ($cache->has($cacheKey) && Versioned::get_stage() === Versioned::LIVE) {
                     return $this->returnJson($cache->get($cacheKey));
@@ -118,9 +124,9 @@ class HeadlessRestController extends Controller {
 
     // Recursively itterate site tree menu pages to get fields and children
     private function getNavigationFields($pages, $fields) {
-        if (!$pages->Count()) return null;
-
         $navigation = [];
+
+        if (!$pages->Count()) return $navigation;
 
         foreach ($pages as $page) {
             $pageFields = $page->getHeadlessRestFields($fields);
