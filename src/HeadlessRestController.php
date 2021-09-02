@@ -124,9 +124,9 @@ class HeadlessRestController extends Controller {
 
     // Recursively itterate site tree menu pages to get fields and children
     private function getNavigationFields($pages, $fields) {
-        if (!$pages->Count()) return null;
-
         $navigation = [];
+
+        if (!$pages->Count()) return $navigation;
 
         foreach ($pages as $page) {
             $pageFields = $page->getHeadlessRestFields($fields);
