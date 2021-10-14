@@ -29,6 +29,8 @@ class HeadlessRestController extends Controller {
         $action = $request->param('action');
         $cache = Injector::inst()->get(CacheInterface::class . self::CACHE_NAMESPACE);
 
+        $this->extend('beforeHeadlessRestControllerAction', $request);
+
         switch ($action) {
             case 'url':
                 $url = $request->remaining();
