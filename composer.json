@@ -1,5 +1,5 @@
 {
-    "name": "olivernorden/silverstripe-headless-rest",
+    "name": "northcreation-agency/silverstripe-headless-rest",
     "description": "Headless rest api for Silverstripe CMS and various front end frameworks",
     "type": "silverstripe-vendormodule",
     "keywords": [
