@@ -73,13 +73,13 @@ class HeadlessRestController extends Controller {
                     'ParentID' => 0,
                 ]);
                 $this->extend('updateNavigationPages', $navigationPages);
-                $navFields = $commonFields['Navigation']['fields'];
+                $navFields = $commonFields['navigation']['fields'];
                 $fields['Navigation'] = $this->getNavigationFields($navigationPages, $navFields);
 
                 // Site config
                 $sc = SiteConfig::current_site_config();
-                $scField = $commonFields['SiteConfig']['fields'];
-                $fields['SiteConfig'] = $sc->getHeadlessRestFields($scField);
+                $scField = $commonFields['siteConfig']['fields'];
+                $fields['siteConfig'] = $sc->getHeadlessRestFields($scField);
 
                 $cache->set($cacheKey, $fields);
                 return $this->returnJson($fields);
@@ -96,7 +96,7 @@ class HeadlessRestController extends Controller {
                 $fields = [];
 
                 $pages = SiteTree::get();
-                $fields['SiteTree'] = $this->getSiteTreeFields($pages, $siteTreeFields);
+                $fields['siteTree'] = $this->getSiteTreeFields($pages, $siteTreeFields);
 
                 $cache->set($cacheKey, $fields);
                 return $this->returnJson($fields);
@@ -117,7 +117,7 @@ class HeadlessRestController extends Controller {
         foreach ($pages as $page) {
             $pageFields = $page->getHeadlessRestFields($fields);
             $childPages = $page->Children();
-            $pageFields['Children'] = $this->getSiteTreeFields($childPages, $fields);
+            $pageFields['children'] = $this->getSiteTreeFields($childPages, $fields);
             $sitetree[] = $pageFields;
         }
 
@@ -133,7 +133,7 @@ class HeadlessRestController extends Controller {
         foreach ($pages as $page) {
             $pageFields = $page->getHeadlessRestFields($fields);
             $childNavPages = $page->Children()->filter(['ShowInMenus' => 1]);
-            $pageFields['MenuChildren'] = $this->getNavigationFields($childNavPages, $fields);
+            $pageFields['menuChildren'] = $this->getNavigationFields($childNavPages, $fields);
             $navigation[] = $pageFields;
         }
 

@@ -4,12 +4,12 @@ Name: headless-rest-common-fields
 
 OliverNorden\HeadlessRest\HeadlessRestController:
     headlessCommonFields:
-        Navigation:
+        navigation:
             fields:
-                ID: ID
-                MenuTitle: getMenuTitle
-                Link: Link
-        SiteConfig:
+                id: ID
+                menuTitle: getMenuTitle
+                link: Link
+        siteConfig:
             fields:
                 Title: Title
 
@@ -18,7 +18,7 @@ OliverNorden\HeadlessRest\HeadlessRestController:
             filter:
                 ShowInMenus: 1
             fields:
-                MenuTitle: MenuTitle
-                Title: Title
-                Link: Link
-                ID: ID
+                menuTitle: MenuTitle
+                title: Title
+                link: Link
+                id: ID
